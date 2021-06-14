@@ -25,7 +25,7 @@
 | category_id         | integer    | null: false                    |
 | status_id           | integer    | null: false                    |
 | shipping_charges_id | integer    | null: false                    |
-| shipping_area_id    | integer    | null: false                    |
+| prefecture_id       | integer    | null: false                    |
 | days_to_ship_id     | integer    | null: false                    |
 | price               | integer    | null: false                    |
 | user                | references | null: false, foreign_key: true |
@@ -61,4 +61,4 @@
 | purchase_record | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :shipping_address
+- belongs_to :purchase_record
