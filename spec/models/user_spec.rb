@@ -6,7 +6,8 @@ RSpec.describe User, type: :model do
       @user = FactoryBot.build(:user)
     end
 
-    it 'nicknameとemail、passwordとpassword_confirmation、first_nameとlast_name、first_name_katakanaとlast_name_katakana、birthdayが存在すれば登録できること' do
+    it 'nicknameとemail、passwordとpassword_confirmation、first_nameとlast_name、
+       first_name_katakanaとlast_name_katakana、birthdayが存在すれば登録できること' do
       expect(@user).to be_valid
     end
 
@@ -27,13 +28,13 @@ RSpec.describe User, type: :model do
       another_user = FactoryBot.build(:user, email: @user.email)
       another_user.email = @user.email
       another_user.valid?
-      expect(another_user.errors.full_messages).to include("Email has already been taken")
+      expect(another_user.errors.full_messages).to include('Email has already been taken')
     end
 
     it 'emailに@が含まれていない場合では登録できないこと' do
       @user.email = FactoryBot.build(:user, email: @user.email)
       @user.valid?
-      expect(@user.errors.full_messages).to include("Email is invalid")
+      expect(@user.errors.full_messages).to include('Email is invalid')
     end
 
     it 'passwordが空では登録できないこと' do
@@ -46,14 +47,14 @@ RSpec.describe User, type: :model do
       @user.password = '12345'
       @user.password_confirmation = '12345'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+      expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
     end
 
     it 'passwordが半角英数字混合ではない場合では登録できないこと' do
       @user.password = 'asdfgh'
       @user.password_confirmation = 'asdfgh'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password is invalid")
+      expect(@user.errors.full_messages).to include('Password is invalid')
     end
 
     it 'passwordとpassword_confirmationが不一致では登録できないこと' do
@@ -72,7 +73,7 @@ RSpec.describe User, type: :model do
     it 'first_nameが全角（漢字・ひらがな・カタカナ）ではない場合では登録できないこと' do
       @user.first_name = 'asdfgh'
       @user.valid?
-      expect(@user.errors.full_messages).to include("First name is invalid")
+      expect(@user.errors.full_messages).to include('First name is invalid')
     end
 
     it 'last_nameが空では登録できないこと' do
@@ -84,7 +85,7 @@ RSpec.describe User, type: :model do
     it 'last_nameが全角（漢字・ひらがな・カタカナ）ではない場合では登録できないこと' do
       @user.last_name = 'asdfgh'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Last name is invalid")
+      expect(@user.errors.full_messages).to include('Last name is invalid')
     end
 
     it 'first_name_katakanaが空では登録できないこと' do
