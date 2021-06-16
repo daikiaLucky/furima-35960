@@ -4,14 +4,28 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :nickname, presence: true
-  validates :email, presence: true
-  validates :password, presence: true, length: { minimum: 6 }, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }
-  validates :first_name, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
-  validates :last_name, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
-  validates :first_name_katakana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
-  validates :last_name_katakana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
-  validates :birthday, presence: true
+  with_options presence: true do
+    validates :nickname
+    validates :email
+    validates :password
+    validates :first_name
+    validates :last_name
+    validates :first_name_katakana
+    validates :last_name_katakana
+    validates :birthday
+  end
+
+  with_options format: { with: /\A[ぁ-んァ-ン一-龥]/ } do
+    validates :first_name
+    validates :last_name
+  end
+
+  with_options format: { with: /\A[ァ-ヶー－]+\z/ } do
+    validates :first_name_katakana
+    validates :last_name_katakana
+  end
+
+  validates :password, length: { minimum: 6 }, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }
 
   has_many :items, dependent: :destroy
   has_many :purchase_records, dependent: :destroy
