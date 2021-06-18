@@ -127,7 +127,9 @@
       新規投稿商品
     </div>
     <ul class='item-lists'>
-
+<%
+=begin
+%>
       <% @items.each do |item| %>
       <li class='list'>
         <%= link_to items_path(item.id) do %>
@@ -176,7 +178,9 @@
           <% end %>
         </li>
       <% end %>
-
+<%
+=end
+%>
     </ul>
   </div>
   <%# /商品一覧 %>
