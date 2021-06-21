@@ -130,37 +130,37 @@
 
       <% if @items.present? %>
         <% @items.each do |item| %>
-        <li class='list'>
-          <%= link_to "#" do%>
-          <div class='item-img-content'>
-            <%= image_tag item.image, class: "item-img" %>
+          <li class='list'>
+            <%= link_to item_path(item.id) do %>
+            <div class='item-img-content'>
+              <%= image_tag item.image, class: "item-img" %>
 
-            <%# 商品が売れていればsold outを表示しましょう %>
-          <%#  <div class='sold-out'> %>
-          <%#  <span>Sold Out!!</span> %>
-          <%#  </div> %>
-            <%# //商品が売れていればsold outを表示しましょう %>
+              <%# 商品が売れていればsold outを表示しましょう %>
+              <%# <div class='sold-out'> %>
+              <%# <span>Sold Out!!</span> %>
+              <%# </div> %>
+              <%# //商品が売れていればsold outを表示しましょう %>
 
-          </div>
-          <div class='item-info'>
-            <h3 class='item-name'>
-              <%= item.title %>
-            </h3>
-            <div class='item-price'>
-              <span><%= item.price %>円<br><%= item.shipping_charge.name %></span>
-              <div class='star-btn'>
-                <%= image_tag "star.png", class:"star-icon" %>
-                <span class='star-count'>0</span>
+            </div>
+            <div class='item-info'>
+              <h3 class='item-name'>
+                <%= item.title %>
+              </h3>
+              <div class='item-price'>
+                <span><%= item.price %>円<br><%= item.shipping_charge.name %></span>
+                <div class='star-btn'>
+                  <%= image_tag "star.png", class:"star-icon" %>
+                  <span class='star-count'>0</span>
+                </div>
               </div>
             </div>
-          </div>
-          <% end %>
-        </li>
+            <% end %>
+          </li>
         <% end %>
 
       <% else %>
         <li class='list'>
-          <%= link_to '#' do %>
+          <%= link_to root_path do %>
           <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
           <div class='item-info'>
             <h3 class='item-name'>
