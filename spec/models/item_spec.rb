@@ -6,7 +6,6 @@ RSpec.describe Item, type: :model do
   end
 
   describe '商品出品' do
-
     context '商品出品ができる時' do
       it 'image, title, description, category_id, status_id, shipping_charge_id,
          prefecture_id, deys_to_ship_id, priceが存在すれば登録できること' do
@@ -98,7 +97,6 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is not a number')
       end
-
     end
   end
 end
