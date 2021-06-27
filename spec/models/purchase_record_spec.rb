@@ -60,19 +60,19 @@ RSpec.describe PurchaseRecordShippingAddress, type: :model do
       it 'phone_numberが9桁以内では保存できないこと' do
         @purchase_record_shipping_address.phone_number = '123456789'
         @purchase_record_shipping_address.valid?
-        expect(@purchase_record_shipping_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@purchase_record_shipping_address.errors.full_messages).to include('Phone number is invalid')
       end
 
       it 'phone_numberが12桁以上では保存できないこと' do
         @purchase_record_shipping_address.phone_number = '123456789012'
         @purchase_record_shipping_address.valid?
-        expect(@purchase_record_shipping_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@purchase_record_shipping_address.errors.full_messages).to include('Phone number is invalid')
       end
 
       it 'phone_numberが半角数値のみではない場合、保存できないこと' do
         @purchase_record_shipping_address.phone_number = '1a2b3c4d5e'
         @purchase_record_shipping_address.valid?
-        expect(@purchase_record_shipping_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@purchase_record_shipping_address.errors.full_messages).to include('Phone number is invalid')
       end
 
       it 'tokenが空では保存できないこと' do
