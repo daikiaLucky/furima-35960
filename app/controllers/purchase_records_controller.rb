@@ -1,6 +1,7 @@
 class PurchaseRecordsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :set_item, only: [:index, :create]
+  before_action :redirect_root, only: [:index]
 
   def index
     @purchase_record_shipping_address = PurchaseRecordShippingAddress.new
@@ -38,4 +39,11 @@ class PurchaseRecordsController < ApplicationController
       currency: 'jpy'
     )
   end
+
+  def redirect_root
+    if (current_user.id == @item.user_id) || @item.purchase_record.present?
+      redirect_to root_path
+    end
+  end
+
 end
