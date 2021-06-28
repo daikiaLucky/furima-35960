@@ -75,6 +75,12 @@ RSpec.describe PurchaseRecordShippingAddress, type: :model do
         expect(@purchase_record_shipping_address.errors.full_messages).to include('Phone number is invalid')
       end
 
+      it 'phone_numberが全角数字では保存できないこと' do
+        @purchase_record_shipping_address.phone_number = '１２３４５６７８９０'
+        @purchase_record_shipping_address.valid?
+        expect(@purchase_record_shipping_address.errors.full_messages).to include('Phone number is invalid')
+      end
+
       it 'tokenが空では保存できないこと' do
         @purchase_record_shipping_address.token = nil
         @purchase_record_shipping_address.valid?
